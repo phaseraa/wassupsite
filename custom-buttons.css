@@ -1,0 +1,32 @@
+/* custom-buttons.css */
+
+.glass-button {
+  /* Dimensões e espaçamento */
+  padding: 10px 24px;
+  margin: 0 8px;
+
+  /* Tipografia */
+  color: #ffffff;
+  font-weight: 700; /* bold */
+  text-transform: uppercase;
+  letter-spacing: 1px;
+
+  /* Efeito Vidro com Fundo Roxo Transparente */
+  background: rgba(138, 43, 226, 0.15); /* Roxo com 15% de opacidade */
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px); /* Compatibilidade com Safari */
+  border: 1px solid rgba(255, 255, 255, 0.1); /* Borda sutil para definir a forma */
+  border-radius: 8px; /* Bordas arredondadas */
+
+  /* Transição suave para o efeito de hover */
+  transition: all 0.3s ease;
+}
+
+.glass-button:hover {
+  /* Efeito de "acender" o vidro */
+  background: rgba(138, 43, 226, 0.25); /* Roxo com 25% de opacidade */
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  cursor: pointer;
+  /* Opcional: Efeito de levantar o botão */
+  transform: translateY(-2px);
+}

@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>akiwassup - Professional Beat Production</title>
+    
+    <link rel="icon" href="https://www.aireys.co.nz/wp-content/uploads/2024/06/cropped-Aireys_Favicon_V2.png">
+
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+    <style>
+        :root {
+            --color-primary: #0d9488;
+            --color-primary-dark: #14532d;
+            --color-glow: rgba(13, 148, 136, 0.2);
+            --color-background: #0A0A0A;
+            --color-surface: #121212;
+            --color-text-primary: #EAEAEA;
+            --color-text-secondary: #888888;
+            --color-border: #222222;
+            --font-heading: 'Syne', sans-serif;
+            --font-body: 'Inter', sans-serif;
+        }
+        
+        html { scroll-behavior: smooth; }
+        body {
+            background-color: var(--color-background); font-family: var(--font-body);
+            color: var(--color-text-primary); -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
+        }
+
+        .heading-font { font-family: var(--font-heading); }
+        .section-title { background-image: linear-gradient(90deg, var(--color-primary), var(--color-primary-dark)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+        .section-title-gradient { background-image: linear-gradient(90deg, var(--color-primary), #a3e635, var(--color-primary)); color: transparent; -webkit-background-clip: text; background-clip: text; animation: animated-gradient 5s ease-in-out infinite; background-size: 200% auto; }
+        @keyframes animated-gradient { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
+        
+        .section-subtitle { color: var(--color-text-secondary); }
+        #hero { height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 1rem; background: radial-gradient(ellipse at 50% 60%, var(--color-surface) 0%, var(--color-background) 75%); }
+
+        .pro-button { display: inline-block; padding: 12px 32px; font-family: var(--font-heading); font-weight: 700; text-transform: uppercase; letter-spacing: 1px; border-radius: 8px; transition: all 0.3s ease; position: relative; }
+        .pro-button-primary { background-color: var(--color-primary); color: #FFFFFF; }
+        .pro-button-primary:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(0,0,0,0.2); }
+        .pro-button-secondary { background-color: transparent; color: var(--color-text-primary); border: 1px solid var(--color-border); }
+        .pro-button-secondary:hover { border-color: var(--color-primary); color: var(--color-primary); }
+
+        header { transition: all 0.3s ease-in-out; }
+        header.scrolled { background-color: rgba(18, 18, 18, 0.7); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border-bottom: 1px solid var(--color-border); }
+        
+        #logo-container { position: relative; cursor: pointer; }
+        #logo-text { font-family: var(--font-heading); font-size: 1.5rem; font-weight: 800; transition: transform 0.3s ease; }
+        #logo-container:hover #logo-text { transform: scale(1.05); }
+        #logo-subtitle {
+            position: absolute; bottom: -5px; left: 50%;
+            transform: translateX(-50%) translateY(5px);
+            white-space: nowrap; color: var(--color-primary);
+            font-size: 0.7rem; font-weight: 700; text-transform: uppercase;
+            letter-spacing: 0.1em; opacity: 0;
+            transition: all 0.3s ease;
+        }
+        #logo-container:hover #logo-subtitle { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+        .plan-card { background-color: var(--color-surface); border: 1px solid var(--color-border); border-radius: 1rem; transition: all 0.4s ease; overflow: hidden; display: flex; flex-direction: column; }
+        .plan-card:hover { transform: translateY(-8px); border-color: var(--color-primary); box-shadow: 0 0 40px var(--color-glow); }
+        .featured-plan { border: 2px solid var(--color-primary); }
+        
+        .plan-badge {
+            background: linear-gradient(90deg, var(--color-primary), var(--color-primary-dark));
+            color: white; padding: 4px 12px; border-radius: 99px;
+            font-weight: 700; font-size: 0.75rem; font-family: var(--font-heading);
+            text-transform: uppercase;
+        }
+
+        .testimonial-card { background-color: var(--color-surface); border: 1px solid var(--color-border); border-radius: 1rem; padding: 2rem; }
+        .testimonial-author img { width: 50px; height: 50px; border-radius: 50%; border: 2px solid var(--color-primary); }
+    </style>
+</head>
+<body class="antialiased">
+
+    <header id="main-header" class="fixed top-0 left-0 right-0 z-50 py-4">
+        <div class="container mx-auto px-6 flex justify-between items-center">
+            <a href="#" id="logo-container">
+                <div id="logo-text">akiwassup</div>
+                <span id="logo-subtitle">Sound Scientist</span>
+            </a>
+            <nav class="hidden md:flex items-center gap-6">
+               <!--  <a href="#about" class="hover:text-primary transition-colors">About</a> -->
+                <a href="#plans" class="hover:text-primary transition-colors">Exclusive Plans</a>
+                <a href="#catalog-beats" class="hover:text-primary transition-colors">Catalog Licenses</a>
+                <!-- <a href="#samples" class="hover:text-primary transition-colors">Works</a> -->
+            </nav>
+            <a href="https://www.dropbox.com/" target="_blank" rel="noopener noreferrer" class="pro-button pro-button-primary text-sm hidden md:inline-block">Full Catalog</a>
+        </div>
+    </header>
+
+    <main>
+
+        <section id="hero">
+            <div class="container mx-auto px-6 text-center">
+                <h1 class="text-5xl md:text-7xl lg:text-8xl heading-font font-extrabold uppercase">
+                    Your Sound, <span class="section-title-gradient">Engineered.</span>
+                </h1>
+                <p class="section-subtitle mt-6 max-w-2xl mx-auto text-lg md:text-xl">
+                    High-quality, exclusive beats designed to make your tracks stand out. Let's create something timeless.
+                </p>
+                <div class="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
+                    <a href="#plans" class="pro-button pro-button-primary">Custom Beats</a>
+                    <a href="#catalog-beats" class="pro-button pro-button-secondary">View Licenses</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- 
+        
+        <section id="about" class="py-24 sm:py-32">
+            <div class="container mx-auto px-6">
+                <div class="max-w-4xl mx-auto text-center">
+                    <h2 class="text-3xl md:text-4xl heading-font font-bold mb-4"> <span class="section-title">akiwassup</span>, The Sound Scientist </h2>
+                    <p class="text-lg text-gray-400"> For over a decade, I've been obsessed with crafting unique sonic landscapes. My mission is to provide artists with more than just a beat; I provide the backbone for your next hit. Every track is mixed and mastered with industry-standard tools, ensuring your sound is radio-ready from the moment you download it. I believe in collaboration and the power of a perfect instrumental to unlock an artist's full potential. </p>
+                </div>
+            </div>
+        </section>  
+        
+         -->
+
+        <section id="plans" class="py-24 sm:py-32 bg-black">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl md:text-5xl heading-font font-bold">Exclusive Beat Plans</h2>
+                    <p class="mt-4 text-lg section-subtitle max-w-2xl mx-auto">For a sound that is uniquely yours. Let's build from scratch.</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                    <div class="plan-card">
+                        <div class="p-8 flex-grow">
+                            <h3 class="text-2xl heading-font font-bold mb-4">STANDARD</h3>
+                            <p class="text-4xl font-bold mb-6">$59<span class="text-lg font-medium text-gray-400">.90</span></p>
+                            <ul class="space-y-4 text-gray-300"> <li class="flex items-start"><i class="fas fa-check-circle text-primary mt-1 mr-3"></i><span>1 exclusive beat, made from scratch.</span></li> <li class="flex items-start"><i class="fas fa-check-circle text-primary mt-1 mr-3"></i><span>15% discount on catalog beats.</span></li> <li class="flex items-start"><i class="fas fa-check-circle text-primary mt-1 mr-3"></i><span>Perfect for releasing a single.</span></li> </ul>
+                        </div>
+                        <div class="p-8 mt-auto"> <a href="https://ig.me/m/akiwassup" target="_blank" rel="noopener noreferrer" class="w-full text-center pro-button pro-button-secondary">SEND A MESSAGE</a> </div>
+                    </div>
+                    <div class="plan-card featured-plan">
+                        <div class="p-8 flex-grow">
+                            <div class="flex justify-between items-center mb-4">
+                                <h3 class="text-2xl heading-font font-bold">DUO PACK</h3>
+                                <span class="plan-badge">Best Value</span>
+                            </div>
+                            <p class="text-4xl font-bold mb-6">$89<span class="text-lg font-medium text-gray-400">.90</span></p>
+                            <ul class="space-y-4 text-gray-300"> <li class="flex items-start"><i class="fas fa-check-circle text-primary mt-1 mr-3"></i><span>2 exclusive beats, made from scratch.</span></li> <li class="flex items-start"><i class="fas fa-check-circle text-primary mt-1 mr-3"></i><span>30% discount on entire catalog.</span></li> <li class="flex items-start"><i class="fas fa-check-circle text-primary mt-1 mr-3"></i><span>Free simple cover art included.</span></li> </ul>
+                        </div>
+                        <div class="p-8 mt-auto"> <a href="https://ig.me/m/akiwassup" target="_blank" rel="noopener noreferrer" class="w-full text-center pro-button pro-button-primary">SEND A MESSAGE</a> </div>
+                    </div>
+                    <div class="plan-card">
+                        <div class="p-8 flex-grow">
+                            <h3 class="text-2xl heading-font font-bold mb-4">ALBUM / EP</h3>
+                            <p class="text-4xl font-bold mb-6">$199<span class="text-lg font-medium text-gray-400">.90</span></p>
+                            <ul class="space-y-4 text-gray-300"> <li class="flex items-start"><i class="fas fa-check-circle text-primary mt-1 mr-3"></i><span>6 fully custom exclusive beats.</span></li> <li class="flex items-start"><i class="fas fa-check-circle text-primary mt-1 mr-3"></i><span>40% discount on entire catalog.</span></li> <li class="flex items-start"><i class="fas fa-check-circle text-primary mt-1 mr-3"></i><span>Ideal for a complete project.</span></li> </ul>
+                        </div>
+                        <div class="p-8 mt-auto"> <a href="https://ig.me/m/akiwassup" target="_blank" rel="noopener noreferrer" class="w-full text-center pro-button pro-button-secondary">SEND A MESSAGE</a> </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="catalog-beats" class="py-24 sm:py-32">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl md:text-5xl heading-font font-bold">Catalog Beat Licenses</h2>
+                    <p class="mt-4 text-lg section-subtitle max-w-2xl mx-auto">Get access to ready-to-use beats from my catalog.</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                    <div class="plan-card">
+                        <div class="p-8 flex-grow">
+                            <h3 class="text-2xl heading-font font-bold mb-4">STARTER</h3>
+                            <p class="text-4xl font-bold mb-6">$80<span class="text-lg font-medium text-gray-400">.00</span></p>
+                            <ul class="space-y-4 text-gray-300"> <li class="flex items-start"><i class="fas fa-check-circle text-primary mt-1 mr-3"></i><span>WAV file - High Quality</span></li> <li class="flex items-start"><i class="fas fa-check-circle text-primary mt-1 mr-3"></i><span>Streams limit: 20k</span></li> <li class="flex items-start"><i class="fas fa-check-circle text-primary mt-1 mr-3"></i><span>Great starting option.</span></li> </ul>
+                        </div>
+                        <div class="p-8 mt-auto"><a href="https://ig.me/m/akiwassup" target="_blank" rel="noopener noreferrer" class="w-full text-center pro-button pro-button-secondary">SEND A MESSAGE</a></div>
+                    </div>
+                    <div class="plan-card featured-plan">
+                        <div class="p-8 flex-grow">
+                             <div class="flex justify-between items-center mb-4">
+                                <h3 class="text-2xl heading-font font-bold">PRO</h3>
+                                <span class="plan-badge">Promo</span>
+                            </div>
+                            <p class="text-4xl font-bold mb-6">$100<span class="text-lg font-medium text-gray-400">.00</span></p>
+                            <ul class="space-y-4 text-gray-300"> <li class="flex items-start"><i class="fas fa-check-circle text-primary mt-1 mr-3"></i><span>WAV file + STEMS FOR MIXING</span></li> <li class="flex items-start"><i class="fas fa-check-circle text-primary mt-1 mr-3"></i><span>Cover art included</span></li> <li class="flex items-start"><i class="fas fa-check-circle text-primary mt-1 mr-3"></i><span>Streams limit: 50k</span></li> </ul>
+                        </div>
+                        <div class="p-8 mt-auto"><a href="https://ig.me/m/akiwassup" target="_blank" rel="noopener noreferrer" class="w-full text-center pro-button pro-button-primary">SEND A MESSAGE</a></div>
+                    </div>
+                    <div class="plan-card">
+                        <div class="p-8 flex-grow">
+                            <h3 class="text-2xl heading-font font-bold mb-4">UNLIMITED</h3>
+                            <p class="text-4xl font-bold mb-6">$120<span class="text-lg font-medium text-gray-400">.00</span></p>
+                            <ul class="space-y-4 text-gray-300"> <li class="flex items-start"><i class="fas fa-check-circle text-primary mt-1 mr-3"></i><span>WAV file + STEMS FOR MIXING</span></li> <li class="flex items-start"><i class="fas fa-check-circle text-primary mt-1 mr-3"></i><span>Unlimited streams</span></li> <li class="flex items-start"><i class="fas fa-check-circle text-primary mt-1 mr-3"></i><span>Ideal for major releases.</span></li> </ul>
+                        </div>
+                        <div class="p-8 mt-auto"><a href="https://ig.me/m/akiwassup" target="_blank" rel="noopener noreferrer" class="w-full text-center pro-button pro-button-secondary">SEND A MESSAGE</a></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+<!-- 
+        <section id="samples" class="py-24 sm:py-32">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl md:text-5xl heading-font font-bold">Recent Productions</h2>
+                    <p class="mt-4 text-lg section-subtitle max-w-2xl mx-auto">Press play and feel the quality.</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-7xl mx-auto">
+                    <div class="rounded-lg overflow-hidden shadow-2xl aspect-w-16 aspect-h-9"><iframe src="https://www.youtube.com/embed/E3x_dLVTEuA" title="YouTube video player" frameborder="0" allowfullscreen class="w-full h-full"></iframe></div>
+                    <div class="rounded-lg overflow-hidden shadow-2xl aspect-w-16 aspect-h-9"><iframe src="https://www.youtube.com/embed/E3x_dLVTEuA" title="YouTube video player" frameborder="0" allowfullscreen class="w-full h-full"></iframe></div>
+                    <div class="rounded-lg overflow-hidden shadow-2xl aspect-w-16 aspect-h-9"><iframe src="https://www.youtube.com/embed/5qap5aO4i9A" title="YouTube video player" frameborder="0" allowfullscreen class="w-full h-full"></iframe></div>
+                </div>
+            </div>
+        </section>
+-->
+        <footer class="py-20 border-t border-gray-800">
+            <div class="container mx-auto px-6 text-center">
+                
+                 <h3 class="text-3xl heading-font font-bold">Ready to Elevate Your Sound?</h3>
+                 <p class="text-gray-400 mt-2 mb-8">Browse the full catalog or get in touch for a custom project.</p>
+                 <a href="https://www.dropbox.com/" target="_blank" rel="noopener noreferrer" class="pro-button pro-button-primary">Browse Full Beat Catalog</a>
+                 <div class="mt-12 flex justify-center gap-6">
+                    <a href="https://www.instagram.com/akiwassup" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="text-gray-500 hover:text-primary transition-colors text-2xl"><i class="fab fa-instagram"></i></a>
+                    <a href="mailto:your.email@example.com" aria-label="Email" class="text-gray-500 hover:text-primary transition-colors text-2xl"><i class="far fa-envelope"></i></a>
+                 </div>
+                 <p class="text-sm text-gray-600 mt-10">© 2025 akiwassup. All Rights Reserved.</p>
+            </div>
+        </footer>
+        
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const header = document.getElementById('main-header');
+            window.addEventListener('scroll', () => {
+                header.classList.toggle('scrolled', window.scrollY > 50);
+            });
+
+            function smoothScrollTo(targetSelector, duration = 800) {
+                const target = document.querySelector(targetSelector);
+                if (!target) return;
+
+                const headerOffset = document.getElementById('main-header').offsetHeight;
+                const elementPosition = target.getBoundingClientRect().top;
+                const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+                let startTime = null;
+                const startPosition = window.pageYOffset;
+
+                function animation(currentTime) {
+                    if (startTime === null) startTime = currentTime;
+                    const timeElapsed = currentTime - startTime;
+                    const run = ease(timeElapsed, startPosition, offsetPosition - startPosition, duration);
+                    window.scrollTo(0, run);
+                    if (timeElapsed < duration) requestAnimationFrame(animation);
+                }
+
+                function ease(t, b, c, d) {
+                    t /= d / 2;
+                    if (t < 1) return c / 2 * t * t + b;
+                    t--;
+                    return -c / 2 * (t * (t - 2) - 1) + b;
+                }
+
+                requestAnimationFrame(animation);
+            }
+
+            const navLinks = document.querySelectorAll('a[href^="#"]');
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') {
+                        smoothScrollTo('body');
+                    } else {
+                        smoothScrollTo(targetId);
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
