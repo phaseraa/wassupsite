@@ -63,6 +63,29 @@
         }
         #logo-container:hover #logo-subtitle { opacity: 1; transform: translateX(-50%) translateY(0); }
 
+        /* Specific styles for header on mobile */
+        @media (max-width: 767px) { /* Tailwind's 'md' breakpoint is 768px */
+            /* Adjusted mobile-header-layout to focus on centering logo only */
+            .mobile-header-layout {
+                display: flex; /* Still flex to make items positionable */
+                justify-content: center; /* Center items for mobile */
+                align-items: center;
+                position: relative; /* Needed for absolute positioning of logo below */
+            }
+            .mobile-header-layout #logo-container {
+                position: static; /* Let the logo behave normally in the flex container */
+                transform: none; /* Remove previous absolute centering */
+            }
+            /* Explicitly hide desktop nav and button on mobile */
+            .mobile-header-layout nav.hidden { /* Target the hidden desktop nav */
+                display: none !important;
+            }
+            .mobile-header-layout .pro-button-desktop {
+                display: none !important; 
+            }
+        }
+
+
         .plan-card { background-color: var(--color-surface); border: 1px solid var(--color-border); border-radius: 1rem; transition: all 0.4s ease; overflow: hidden; display: flex; flex-direction: column; }
         .plan-card:hover { transform: translateY(-8px); border-color: var(--color-primary); box-shadow: 0 0 40px var(--color-glow); }
         .featured-plan { border: 2px solid var(--color-primary); }
@@ -76,55 +99,45 @@
 
         .testimonial-card { background-color: var(--color-surface); border: 1px solid var(--color-border); border-radius: 1rem; padding: 2rem; }
         .testimonial-author img { width: 50px; height: 50px; border-radius: 50%; border: 2px solid var(--color-primary); }
+
+        /* Mobile menu overlay styles (no longer needed if menu is removed, but keeping if you re-introduce it later) */
+        .mobile-menu-overlay {
+            display: none; /* Completely hide the overlay */
+        }
     </style>
 </head>
 <body class="antialiased">
 
     <header id="main-header" class="fixed top-0 left-0 right-0 z-50 py-4">
-        <div class="container mx-auto px-6 flex justify-between items-center">
-            <a href="#" id="logo-container">
-                <div id="logo-text">akiwassup</div>
+        <div class="container mx-auto px-6 flex items-center md:justify-between mobile-header-layout">
+            <a href="#" id="logo-container" class="mx-auto md:mx-0"> <div id="logo-text">akiwassup</div>
                 <span id="logo-subtitle">Sound Scientist</span>
             </a>
             <nav class="hidden md:flex items-center gap-6">
-               <!--  <a href="#about" class="hover:text-primary transition-colors">About</a> -->
                 <a href="#plans" class="hover:text-primary transition-colors">Exclusive Plans</a>
                 <a href="#catalog-beats" class="hover:text-primary transition-colors">Catalog Licenses</a>
-                <!-- <a href="#samples" class="hover:text-primary transition-colors">Works</a> -->
             </nav>
-            <a href="https://www.dropbox.com/" target="_blank" rel="noopener noreferrer" class="pro-button pro-button-primary text-sm hidden md:inline-block">Full Catalog</a>
-        </div>
+            <a href="https://www.dropbox.com/" target="_blank" rel="noopener noreferrer" class="pro-button pro-button-primary text-sm hidden md:inline-block pro-button-desktop">Full Catalog</a>
+            
+            </div>
     </header>
 
     <main>
 
         <section id="hero">
             <div class="container mx-auto px-6 text-center">
-                <h1 class="text-5xl md:text-7xl lg:text-8xl heading-font font-extrabold uppercase">
-                    Your Sound, <span class="section-title-gradient">Engineered.</span>
+                <h1 class="text-4xl sm:text-6xl md:text-7xl lg:text-8xl heading-font font-extrabold uppercase">
+                    lets make <span class="section-title-gradient">sound</span>
                 </h1>
-                <p class="section-subtitle mt-6 max-w-2xl mx-auto text-lg md:text-xl">
+                <p class="section-subtitle mt-6 max-w-2xl mx-auto text-base sm:text-lg md:text-xl px-4">
                     High-quality, exclusive beats designed to make your tracks stand out. Let's create something timeless.
                 </p>
-                <div class="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
-                    <a href="#plans" class="pro-button pro-button-primary">Custom Beats</a>
-                    <a href="#catalog-beats" class="pro-button pro-button-secondary">View Licenses</a>
+                <div class="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4 px-4">
+                    <a href="#plans" class="pro-button pro-button-primary w-full sm:w-auto">Custom Beats</a>
+                    <a href="#catalog-beats" class="pro-button pro-button-secondary w-full sm:w-auto">View Licenses</a>
                 </div>
             </div>
         </section>
-
-        <!-- 
-        
-        <section id="about" class="py-24 sm:py-32">
-            <div class="container mx-auto px-6">
-                <div class="max-w-4xl mx-auto text-center">
-                    <h2 class="text-3xl md:text-4xl heading-font font-bold mb-4"> <span class="section-title">akiwassup</span>, The Sound Scientist </h2>
-                    <p class="text-lg text-gray-400"> For over a decade, I've been obsessed with crafting unique sonic landscapes. My mission is to provide artists with more than just a beat; I provide the backbone for your next hit. Every track is mixed and mastered with industry-standard tools, ensuring your sound is radio-ready from the moment you download it. I believe in collaboration and the power of a perfect instrumental to unlock an artist's full potential. </p>
-                </div>
-            </div>
-        </section>  
-        
-         -->
 
         <section id="plans" class="py-24 sm:py-32 bg-black">
             <div class="container mx-auto px-6">
@@ -132,8 +145,8 @@
                     <h2 class="text-4xl md:text-5xl heading-font font-bold">Exclusive Beat Plans</h2>
                     <p class="mt-4 text-lg section-subtitle max-w-2xl mx-auto">For a sound that is uniquely yours. Let's build from scratch.</p>
                 </div>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
-                    <div class="plan-card">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto justify-items-center">
+                    <div class="plan-card w-full max-w-sm">
                         <div class="p-8 flex-grow">
                             <h3 class="text-2xl heading-font font-bold mb-4">STANDARD</h3>
                             <p class="text-4xl font-bold mb-6">$59<span class="text-lg font-medium text-gray-400">.90</span></p>
@@ -141,7 +154,7 @@
                         </div>
                         <div class="p-8 mt-auto"> <a href="https://ig.me/m/akiwassup" target="_blank" rel="noopener noreferrer" class="w-full text-center pro-button pro-button-secondary">SEND A MESSAGE</a> </div>
                     </div>
-                    <div class="plan-card featured-plan">
+                    <div class="plan-card featured-plan w-full max-w-sm">
                         <div class="p-8 flex-grow">
                             <div class="flex justify-between items-center mb-4">
                                 <h3 class="text-2xl heading-font font-bold">DUO PACK</h3>
@@ -152,7 +165,7 @@
                         </div>
                         <div class="p-8 mt-auto"> <a href="https://ig.me/m/akiwassup" target="_blank" rel="noopener noreferrer" class="w-full text-center pro-button pro-button-primary">SEND A MESSAGE</a> </div>
                     </div>
-                    <div class="plan-card">
+                    <div class="plan-card w-full max-w-sm">
                         <div class="p-8 flex-grow">
                             <h3 class="text-2xl heading-font font-bold mb-4">ALBUM / EP</h3>
                             <p class="text-4xl font-bold mb-6">$199<span class="text-lg font-medium text-gray-400">.90</span></p>
@@ -170,8 +183,8 @@
                     <h2 class="text-4xl md:text-5xl heading-font font-bold">Catalog Beat Licenses</h2>
                     <p class="mt-4 text-lg section-subtitle max-w-2xl mx-auto">Get access to ready-to-use beats from my catalog.</p>
                 </div>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
-                    <div class="plan-card">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto justify-items-center">
+                    <div class="plan-card w-full max-w-sm">
                         <div class="p-8 flex-grow">
                             <h3 class="text-2xl heading-font font-bold mb-4">STARTER</h3>
                             <p class="text-4xl font-bold mb-6">$80<span class="text-lg font-medium text-gray-400">.00</span></p>
@@ -179,18 +192,18 @@
                         </div>
                         <div class="p-8 mt-auto"><a href="https://ig.me/m/akiwassup" target="_blank" rel="noopener noreferrer" class="w-full text-center pro-button pro-button-secondary">SEND A MESSAGE</a></div>
                     </div>
-                    <div class="plan-card featured-plan">
+                    <div class="plan-card featured-plan w-full max-w-sm">
                         <div class="p-8 flex-grow">
-                             <div class="flex justify-between items-center mb-4">
-                                <h3 class="text-2xl heading-font font-bold">PRO</h3>
-                                <span class="plan-badge">Promo</span>
+                               <div class="flex justify-between items-center mb-4">
+                                 <h3 class="text-2xl heading-font font-bold">PRO</h3>
+                                 <span class="plan-badge">Promo</span>
                             </div>
                             <p class="text-4xl font-bold mb-6">$100<span class="text-lg font-medium text-gray-400">.00</span></p>
                             <ul class="space-y-4 text-gray-300"> <li class="flex items-start"><i class="fas fa-check-circle text-primary mt-1 mr-3"></i><span>WAV file + STEMS FOR MIXING</span></li> <li class="flex items-start"><i class="fas fa-check-circle text-primary mt-1 mr-3"></i><span>Cover art included</span></li> <li class="flex items-start"><i class="fas fa-check-circle text-primary mt-1 mr-3"></i><span>Streams limit: 50k</span></li> </ul>
                         </div>
                         <div class="p-8 mt-auto"><a href="https://ig.me/m/akiwassup" target="_blank" rel="noopener noreferrer" class="w-full text-center pro-button pro-button-primary">SEND A MESSAGE</a></div>
                     </div>
-                    <div class="plan-card">
+                    <div class="plan-card w-full max-w-sm">
                         <div class="p-8 flex-grow">
                             <h3 class="text-2xl heading-font font-bold mb-4">UNLIMITED</h3>
                             <p class="text-4xl font-bold mb-6">$120<span class="text-lg font-medium text-gray-400">.00</span></p>
@@ -201,32 +214,19 @@
                 </div>
             </div>
         </section>
-<!-- 
-        <section id="samples" class="py-24 sm:py-32">
-            <div class="container mx-auto px-6">
-                <div class="text-center mb-16">
-                    <h2 class="text-4xl md:text-5xl heading-font font-bold">Recent Productions</h2>
-                    <p class="mt-4 text-lg section-subtitle max-w-2xl mx-auto">Press play and feel the quality.</p>
-                </div>
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-7xl mx-auto">
-                    <div class="rounded-lg overflow-hidden shadow-2xl aspect-w-16 aspect-h-9"><iframe src="https://www.youtube.com/embed/E3x_dLVTEuA" title="YouTube video player" frameborder="0" allowfullscreen class="w-full h-full"></iframe></div>
-                    <div class="rounded-lg overflow-hidden shadow-2xl aspect-w-16 aspect-h-9"><iframe src="https://www.youtube.com/embed/E3x_dLVTEuA" title="YouTube video player" frameborder="0" allowfullscreen class="w-full h-full"></iframe></div>
-                    <div class="rounded-lg overflow-hidden shadow-2xl aspect-w-16 aspect-h-9"><iframe src="https://www.youtube.com/embed/5qap5aO4i9A" title="YouTube video player" frameborder="0" allowfullscreen class="w-full h-full"></iframe></div>
-                </div>
-            </div>
-        </section>
--->
+
         <footer class="py-20 border-t border-gray-800">
             <div class="container mx-auto px-6 text-center">
                 
-                 <h3 class="text-3xl heading-font font-bold">Ready to Elevate Your Sound?</h3>
-                 <p class="text-gray-400 mt-2 mb-8">Browse the full catalog or get in touch for a custom project.</p>
-                 <a href="https://www.dropbox.com/" target="_blank" rel="noopener noreferrer" class="pro-button pro-button-primary">Browse Full Beat Catalog</a>
-                 <div class="mt-12 flex justify-center gap-6">
-                    <a href="https://www.instagram.com/akiwassup" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="text-gray-500 hover:text-primary transition-colors text-2xl"><i class="fab fa-instagram"></i></a>
-                    <a href="mailto:your.email@example.com" aria-label="Email" class="text-gray-500 hover:text-primary transition-colors text-2xl"><i class="far fa-envelope"></i></a>
-                 </div>
-                 <p class="text-sm text-gray-600 mt-10">© 2025 akiwassup. All Rights Reserved.</p>
+                   <h3 class="text-3xl heading-font font-bold">Ready to Elevate Your Sound?</h3>
+                   <p class="text-gray-400 mt-2 mb-8">Browse the full catalog or get in touch for a custom project.</p>
+                   <a href="https://www.dropbox.com/" target="_blank" rel="noopener noreferrer" class="pro-button pro-button-primary">Browse Full Beat Catalog</a>
+                   <div class="mt-12 flex justify-center gap-6">
+                     <a href="https://www.instagram.com/akiwassup" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="text-gray-500 hover:text-primary transition-colors text-2xl"><i class="fab fa-instagram"></i></a>
+                    <!--  <a href="mailto:your.email@example.com" aria-label="Email" class="text-gray-500 hover:text-primary transition-colors text-2xl"><i class="far fa-envelope"></i></a>
+                 -->
+                </div>
+                   <p class="text-sm text-gray-600 mt-10">© 2025 akiwassup. All Rights Reserved.</p>
             </div>
         </footer>
         
@@ -235,9 +235,12 @@
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const header = document.getElementById('main-header');
+            
             window.addEventListener('scroll', () => {
                 header.classList.toggle('scrolled', window.scrollY > 50);
             });
+
+            // Removed all mobile menu related JavaScript as there's no menu anymore
 
             function smoothScrollTo(targetSelector, duration = 800) {
                 const target = document.querySelector(targetSelector);
@@ -270,6 +273,7 @@
 
             const navLinks = document.querySelectorAll('a[href^="#"]');
             navLinks.forEach(link => {
+                // This now covers all internal links
                 link.addEventListener('click', function(e) {
                     e.preventDefault();
                     const targetId = this.getAttribute('href');
